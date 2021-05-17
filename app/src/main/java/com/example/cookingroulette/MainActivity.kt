@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                             // 登録ボタンが押された時の処理
                                 val helper = CuisineOpenHelper(applicationContext)
 
-                                //use{}はDB使用後半強制的にクローズしてくれる
+                                //use{}はDB使用後半強制的にクローズする
                                 //editTextに入力した料理をDBに登録する
                                 helper.use{
                                     insert(CuisineOpenHelper.TABLE_NAME,

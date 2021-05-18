@@ -2,13 +2,13 @@ package com.example.cookingroulette
 
 import android.view.animation.Animation
 import android.view.animation.Transformation
-import com.example.cookingroulette.FirstFragment.RouletteView
+import com.example.cookingroulette.RouletteView
 
 
-class RouletteAnimation internal constructor(rouletteView: FirstFragment.RouletteView, pos: Int) : Animation() {
+class RouletteAnimation internal constructor(rouletteView: RouletteView, pos: Int) : Animation() {
     private var currentPosition = 0
     private var endPosition = 0
-    private val rouletteView: FirstFragment.RouletteView
+    private val rouletteView: RouletteView
 
     override fun applyTransformation(interpolatedTime: Float, transformation: Transformation) {
         // interpolatedTime: 0.f -> 1.0f

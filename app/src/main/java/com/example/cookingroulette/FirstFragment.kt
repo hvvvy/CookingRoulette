@@ -26,16 +26,16 @@ class FirstFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        /*//ドラムロール表示用の配列作成
+        //ドラムロール表示用の配列作成
         val fruits = arrayOf("りんご", "いちご", "みかん")
         //NumberPickerを取得
         var v = inflater.inflate(R.layout.fragment_first, container, false)
-        val picker = v.findViewById<NumberPicker>(R.id.picker)
+        val picker = v.findViewById<NumberPicker>(R.id.numPicker)
         //配列のインデックス最小、最大を指定
         picker.minValue = 0
         picker.maxValue = fruits.size - 1
         //NumberPickerに配列をセットする
-        picker.displayedValues = fruits*/
+        picker.displayedValues = fruits
 
         /*var v = inflater.inflate(R.layout.fragment_first, container, false)
         val picker = v.findViewById<NumberPicker>(R.id.picker)
@@ -46,7 +46,7 @@ class FirstFragment : Fragment() {
 
 
 
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return v
     }
 
 

@@ -17,7 +17,7 @@
         android:shadowRadius="1"
         android:singleLine="false"
         android:soundEffectsEnabled="true"
-        android:text="@string/hello_first_fragment"
+        android:text="@string/today_menu"
         android:textColor="#BFF7FF00"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -99,12 +99,12 @@
         android:id="@+id/rouletteView"
         class="com.example.cookingroulette.RouletteView"
         android:layout_width="match_parent"
-        android:layout_height="302dp"
+        android:layout_height="345dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintVertical_bias="0.165" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

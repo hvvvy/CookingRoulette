@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingroulette.db.CuisineOpenHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,6 +23,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        /*//ドラムロール表示用の配列作成
+        val fruits = arrayOf("りんご", "いちご", "みかん")
+        //NumberPickerを取得
+        val picker = findViewById<NumberPicker>(R.id.picker)
+        //配列のインデックス最小、最大を指定
+
+        picker.minValue = 0
+        picker.maxValue = fruits.size - 1
+        //NumberPickerに配列をセットする
+        picker.displayedValues = fruits
+      //  picker.setOnClickListener {  }*/
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

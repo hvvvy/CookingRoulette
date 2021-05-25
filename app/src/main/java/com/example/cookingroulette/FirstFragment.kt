@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.NumberPicker
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -25,8 +26,23 @@ class FirstFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        /*val rouletteView: RouletteView = RouletteView(activity)
-        //setContentView(rouletteView)*/
+        /*//ドラムロール表示用の配列作成
+        val fruits = arrayOf("りんご", "いちご", "みかん")
+        //NumberPickerを取得
+        var v = inflater.inflate(R.layout.fragment_first, container, false)
+        val picker = v.findViewById<NumberPicker>(R.id.picker)
+        //配列のインデックス最小、最大を指定
+        picker.minValue = 0
+        picker.maxValue = fruits.size - 1
+        //NumberPickerに配列をセットする
+        picker.displayedValues = fruits*/
+
+        /*var v = inflater.inflate(R.layout.fragment_first, container, false)
+        val picker = v.findViewById<NumberPicker>(R.id.picker)
+        picker.minValue=0
+        picker.maxValue=20
+        picker.value=3*/
+
 
 
 

@@ -2,10 +2,9 @@ package com.example.cookingroulette.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import androidx.annotation.IntegerRes
 import org.jetbrains.anko.db.*
 
-class CuisineOpenHelper(context: Context): ManagedSQLiteOpenHelper(context,DB_NAME,null,DB_VERSION) {
+class CuisineOpenHelper(context: Context?): ManagedSQLiteOpenHelper(context!!,DB_NAME,null,DB_VERSION) {
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         TODO("Not yet implemented")

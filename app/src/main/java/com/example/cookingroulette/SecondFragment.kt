@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.example.cookingroulette.db.CuisineOpenHelper
+import com.example.cookingroulette.db.CuisineRowParser
+import kotlinx.android.synthetic.main.fragment_second.*
+import org.jetbrains.anko.db.SqlOrderDirection
+import org.jetbrains.anko.db.select
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SecondFragment : Fragment() {
 
     override fun onCreateView(
@@ -24,7 +27,25 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
+       // val helper = CuisineOpenHelper(this.context)
+
+        /*//use を利用すると、最後に close() を実行してくれる
+        helper.use {
+            val list = select(CuisineOpenHelper.TABLE_NAME)
+                    .orderBy("_id", SqlOrderDirection.DESC)
+                .parseList(CuisineRowParser())*/
+
+        //仮のデータ（あとでDBからのデータ取得処理を記述）
+        val titles = arrayListOf("Mac", "Apple", "Mini", "iMac", "Pro")
+
+            //データとListViewをつなぐアダプター
+        cuisineList.adapter = ArrayAdapter<String>(this.requireContext(), android.R.layout.simple_list_item_1, titles)
+
+        //cuisineList.setAdapter(arrayAdapter)
+       // }
+
+
+        view.findViewById<Button>(R.id.backButton).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }

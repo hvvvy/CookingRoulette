@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.NumberPicker
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
@@ -29,13 +30,13 @@ class FirstFragment : Fragment() {
         //ドラムロール表示用の配列作成
         val fruits = arrayOf("りんご", "いちご", "みかん")
         //NumberPickerを取得
-        var v = inflater.inflate(R.layout.fragment_first, container, false)
-        val picker = v.findViewById<NumberPicker>(R.id.numPicker)
+        var numPickerView = inflater.inflate(R.layout.fragment_first, container, false)
+        val numPicker = numPickerView.findViewById<NumberPicker>(R.id.numPicker)
         //配列のインデックス最小、最大を指定
-        picker.minValue = 0
-        picker.maxValue = fruits.size - 1
+        numPicker.minValue = 0
+        numPicker.maxValue = fruits.size - 1
         //NumberPickerに配列をセットする
-        picker.displayedValues = fruits
+        numPicker.displayedValues = fruits
 
         /*var v = inflater.inflate(R.layout.fragment_first, container, false)
         val picker = v.findViewById<NumberPicker>(R.id.picker)
@@ -43,10 +44,7 @@ class FirstFragment : Fragment() {
         picker.maxValue=20
         picker.value=3*/
 
-
-
-
-        return v
+        return numPickerView
     }
 
 
@@ -60,7 +58,14 @@ class FirstFragment : Fragment() {
             // アニメーションの起動期間を設定
             rouletteAnimation.setDuration(10000)
             rouletteView.startAnimation(rouletteAnimation)
-           // findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+
         }
+
+        view.findViewById<ImageButton>(R.id.addButton).setOnClickListener {
+            //secondfragmentに画面遷移
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+
+        }
+
     }
 }

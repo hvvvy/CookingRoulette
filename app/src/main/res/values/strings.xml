@@ -16,4 +16,6 @@
     <string name="remove_button">削除</string>
     <string name="add_button">追加</string>
     <string name="random_button">ランダム生成</string>
+    <string name="back_button">戻る</string>
+
 </resources>

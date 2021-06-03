@@ -17,12 +17,13 @@ class CuisineListAdapter : ArrayAdapter<CuisineEntity> {
     constructor(context: Context?, resource: Int, objects: MutableList<CuisineEntity>?) : super(context!!, resource, objects!!)
     constructor(context: Context?, resource: Int, textViewResourceId: Int, objects: MutableList<CuisineEntity>?) : super(context!!, resource, textViewResourceId, objects!!)
 
-    internal fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        var newView = convertView ?: context.layoutInflater.inflate(android.R.layout.simple_list_item_1, null)
+        var newView = convertView ?: context.layoutInflater.inflate(R.layout.row, null)
 
         getItem(position)?.run {
-            newView.findViewById<TextView>(android.R.id.text1).text = title
+            newView.findViewById<TextView>(R.id.rowId).text = _id.toString()
+            newView.findViewById<TextView>(R.id.rowTitle).text = title
         }
         return newView
     }

@@ -17,5 +17,7 @@
     <string name="add_button">追加</string>
     <string name="random_button">ランダム生成</string>
     <string name="back_button">戻る</string>
+    <string name="label_result_id">この料理のID：</string>
+    <string name="label_result_title">この料理のタイトル：</string>
 
 </resources>

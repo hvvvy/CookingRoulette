@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cookingroulette.db.CuisineOpenHelper
+import com.example.cookingroulette.db.CuisineDatabaseOpenHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import org.jetbrains.anko.db.insert
@@ -49,13 +49,15 @@ class MainActivity : AppCompatActivity() {
                         .setView(editText)
                         .setPositiveButton("登録", DialogInterface.OnClickListener { dialog, which ->
                             // 登録ボタンが押された時の処理
-                                val helper = CuisineOpenHelper(applicationContext)
+                            //val helper = CuisineDatabaseOpenHelper(applicationContext)
+                                val helper = CuisineDatabaseOpenHelper(this)
 
                                 //use{}はDB使用後半強制的にクローズする
                                 //editTextに入力した料理をDBに登録する
                                 helper.use{
-                                    insert(CuisineOpenHelper.TABLE_NAME,
-                                            "title" to editText.text.toString())
+                                    insert(CuisineDatabaseOpenHelper.tableName,
+                                        //*arrayOf()の部分要確認
+                                            *arrayOf("title" to editText.text.toString()))
                                 }
                                 toast("データを追加しました")
                                 finish()

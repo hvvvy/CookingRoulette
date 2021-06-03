@@ -7,7 +7,7 @@ import org.jetbrains.anko.db.MapRowParser
 class ListDataParser: MapRowParser<CuisineEntity> {
     override fun parseRow(columns: Map<String, Any?>): CuisineEntity {
         return CuisineEntity(
-                (columns["_id"] as? Long)?.toInt(),
+                (columns["_id"] as Long).toInt(),
             columns["title"] as String
         )
     }

@@ -20,7 +20,7 @@ class CuisineDatabaseOpenHelper (context:Context):ManagedSQLiteOpenHelper(contex
         db?.run { createTable(tableName,ifNotExists = true,
                 //カラム名と型を指定している箇所で使用しているarrayOfにアスタリスクを指定している
                 //これはvarargで値を渡す時に事前に配列を作成した場合は、その変数やarrayOfにアスタリスクが必要となる
-                columns = *arrayOf( "_id" to TEXT, "title" to TEXT))
+                columns = *arrayOf( "_id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT, "title" to TEXT))
         }
     }
 

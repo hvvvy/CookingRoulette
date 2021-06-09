@@ -22,7 +22,7 @@ class CuisineListAdapter : ArrayAdapter<CuisineEntity> {
         var newView = convertView ?: context.layoutInflater.inflate(R.layout.row, null)
 
         getItem(position)?.run {
-            newView.findViewById<TextView>(R.id.rowId).text = _id.toString()
+            //newView.findViewById<TextView>(R.id.rowId).text = _id.toString()
             newView.findViewById<TextView>(R.id.rowTitle).text = title
         }
         return newView

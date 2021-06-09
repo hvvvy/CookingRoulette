@@ -1,25 +1,25 @@
 package com.example.cookingroulette
 
-import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.NumberPicker
-import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_first.*
 
 
 class FirstFragment : Fragment() {
 
+    val sample = CuisineDataList.getInstance()
+
+    private var showCanvas = false
+
+    //private var rouletteView: RouletteView? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class FirstFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        //ドラムロール表示用の配列作成
+        /*//ドラムロール表示用の配列作成
         val fruits = arrayOf("りんご", "いちご", "みかん")
         //NumberPickerを取得
         var numPickerView = inflater.inflate(R.layout.fragment_first, container, false)
@@ -38,13 +38,19 @@ class FirstFragment : Fragment() {
         //NumberPickerに配列をセットする
         numPicker.displayedValues = fruits
 
-        /*var v = inflater.inflate(R.layout.fragment_first, container, false)
-        val picker = v.findViewById<NumberPicker>(R.id.picker)
-        picker.minValue=0
-        picker.maxValue=20
-        picker.value=3*/
+        return numPickerView*/
 
-        return numPickerView
+        /*var rou = inflater.inflate(R.layout.fragment_second, container, false)
+        rouletteView = rou.findViewById<RouletteView>(R.id.rouletteView)*/
+
+        var v = inflater.inflate(R.layout.fragment_first, container, false)
+        val numPicker = v.findViewById<NumberPicker>(R.id.numPicker)
+        numPicker.minValue=2
+        numPicker.maxValue=20
+        numPicker.value=2
+        return v
+
+
     }
 
 
@@ -62,10 +68,19 @@ class FirstFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.addButton).setOnClickListener {
+
+                rouletteView.showCanvas(false)
+
+                Log.d("debug", " showCanvas = false${sample.sample}")
+
+
+
+
             //secondfragmentに画面遷移
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 
         }
 
     }
+
 }

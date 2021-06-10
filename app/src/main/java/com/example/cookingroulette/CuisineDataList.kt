@@ -2,7 +2,7 @@ package com.example.cookingroulette
 
 import android.app.Application
 class CuisineDataList :Application(){
-    var sample: MutableList<String?> = mutableListOf()
+    var cuisineData: MutableList<String?> = mutableListOf()
 
     companion object {
         private var instance : CuisineDataList? = null

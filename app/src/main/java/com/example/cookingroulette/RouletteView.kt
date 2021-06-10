@@ -20,9 +20,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
     var yPaint = Paint()
     var lbPaint = Paint()
     private var position = 0
-    var firstFragment = FirstFragment()
-    val sample = CuisineDataList.getInstance()
-
+    val cuisineData = CuisineDataList.getInstance()
     var viewflg = true
 
 
@@ -34,8 +32,8 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
     override fun onDraw(canvas: Canvas) {
 
         if (viewflg) {
-            var test: MutableList<String?> = sample.sample
-            Log.d("TestView", " viewflg = true" + test)
+            var cuisine: MutableList<String?> = cuisineData.cuisineData
+            Log.d("TestView", " viewflg = true" + cuisine)
 
             //text用
             textPaint.textSize = 65f
@@ -49,7 +47,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
 
             // (left, top, right, bottom) 左上(400, 100)を起点に幅200の矩形
             // canvas.drawRect(400f, (100 + position).toFloat(), 600f, (300 + position).toFloat(), paint)
-            canvas.save()
+            //canvas.save()
             //translate()はcanvasごと移動させる rotate()はcanvas自体はそのまま動かさず回転軸だけを移動させる
             //回転軸を中心にする
             canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
@@ -59,7 +57,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
             //一番左上の点から数える
             //中心にするならcanvas.drawRect(横幅の1/4f, 縦幅の1/4f,横幅の3/4f,縦幅の3/4f, paint)
             //canvas.drawRect((canvas.width/4).toFloat(), (canvas.height/4).toFloat(), ((canvas.width/4))*3.toFloat(),((canvas.height/4))*3.toFloat(), paint)
-            var size = test.size
+            var size = cuisine.size
             when (size) {
                 2 -> {
                     //1個目
@@ -71,7 +69,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                             true, rPaint)
 
                     //テスト
-                    canvas.drawText(test[size - 1].toString(), (canvas.width / 2).toFloat(),
+                    canvas.drawText(cuisine[size - 1].toString(), (canvas.width / 2).toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //2個目
@@ -91,7 +89,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                             true, rPaint)
 
                     //テスト
-                    canvas.drawText(test[size - 3].toString(), (canvas.width / 2).toFloat(),
+                    canvas.drawText(cuisine[size - 3].toString(), (canvas.width / 2).toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //2個目
@@ -103,7 +101,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                             true, yPaint)
 
                     //テスト
-                    canvas.drawText(test[size - 2].toString(), (canvas.width / 2).toFloat(),
+                    canvas.drawText(cuisine[size - 2].toString(), (canvas.width / 2).toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //3個目
@@ -115,7 +113,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                             true, lbPaint)
 
                     //テスト
-                    canvas.drawText(test[size - 1].toString(), (canvas.width / 2).toFloat(),
+                    canvas.drawText(cuisine[size - 1].toString(), (canvas.width / 2).toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
                 }
                 else -> {
@@ -123,20 +121,13 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                             (canvas.width / 4).toFloat(),
                             ((canvas.width / 4)) * 3.toFloat(),
                             ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 180f,
+                            270f, 360f,
                             true, rPaint)
 
-                    //テスト
-                    canvas.drawText("data is not found", (canvas.width / 2).toFloat(),
+                    //真ん中に合わせるため文言の前に半角スペース
+                    canvas.drawText(" data is not found", (canvas.width / 4).toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
-                    /*//2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            90f, 180f,
-                            true, yPaint)*/
                 }
             }
         }else{
@@ -145,8 +136,6 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
             // 描画クリア
             canvas.drawColor(0, PorterDuff.Mode.CLEAR)
         }
-
-//        canvas.restore()
     }
 
     fun showCanvas(flg: Boolean) {
@@ -154,10 +143,6 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
         // 再描画
         invalidate()
     }
-    /*fun showCanvas() {
-        // 再描画
-        invalidate()
-    }*/
 
     fun setPositon(pos: Int) {
         position = pos

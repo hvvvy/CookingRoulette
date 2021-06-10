@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_second.*
 import org.jetbrains.anko.db.select
 
 class SecondFragment : Fragment() {
-    val sample = CuisineDataList.getInstance()
+    val cuisineData = CuisineDataList.getInstance()
 
 
 
@@ -51,10 +51,10 @@ class SecondFragment : Fragment() {
         //各項目を選択した時の処理
         cuisineList.setOnItemClickListener { parent, view, position, id ->
             // Toast.makeText(this.requireContext(),dataList[position].title, Toast.LENGTH_SHORT).show()
-            sample.sample.add(dataList[position].title)
+            cuisineData.cuisineData.add(dataList[position].title)
 
            // rouletteView.showCanvas(true)
-            Log.d("debug", " showCanvas = true${sample.sample}${sample.sample.size}")
+            Log.d("debug", " showCanvas = true${cuisineData.cuisineData}${cuisineData.cuisineData.size}")
 
 
             /*if (showCanvas) {

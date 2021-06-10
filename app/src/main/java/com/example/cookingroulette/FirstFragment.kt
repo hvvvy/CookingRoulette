@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.NumberPicker
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -15,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_first.*
 
 class FirstFragment : Fragment() {
 
-    val sample = CuisineDataList.getInstance()
+    private val cuisineData = CuisineDataList.getInstance()
 
-    private var showCanvas = false
+
 
     //private var rouletteView: RouletteView? = null
 
@@ -27,32 +28,15 @@ class FirstFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        /*//ドラムロール表示用の配列作成
-        val fruits = arrayOf("りんご", "いちご", "みかん")
         //NumberPickerを取得
-        var numPickerView = inflater.inflate(R.layout.fragment_first, container, false)
-        val numPicker = numPickerView.findViewById<NumberPicker>(R.id.numPicker)
-        //配列のインデックス最小、最大を指定
-        numPicker.minValue = 0
-        numPicker.maxValue = fruits.size - 1
-        //NumberPickerに配列をセットする
-        numPicker.displayedValues = fruits
-
-        return numPickerView*/
-
-        /*var rou = inflater.inflate(R.layout.fragment_second, container, false)
-        rouletteView = rou.findViewById<RouletteView>(R.id.rouletteView)*/
-
-        var v = inflater.inflate(R.layout.fragment_first, container, false)
+        val v = inflater.inflate(R.layout.fragment_first, container, false)
         val numPicker = v.findViewById<NumberPicker>(R.id.numPicker)
-        numPicker.minValue=2
-        numPicker.maxValue=20
-        numPicker.value=2
+        //配列のインデックス最小、最大を指定
+        numPicker.minValue = 2
+        numPicker.maxValue = 20
+        numPicker.value = 2
         return v
-
-
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,21 +48,34 @@ class FirstFragment : Fragment() {
             // アニメーションの起動期間を設定
             rouletteAnimation.setDuration(10000)
             rouletteView.startAnimation(rouletteAnimation)
-
         }
 
         view.findViewById<ImageButton>(R.id.addButton).setOnClickListener {
 
-                rouletteView.showCanvas(false)
+            rouletteView.showCanvas(false)
 
-                Log.d("debug", " showCanvas = false${sample.sample}")
-
-
-
+            Log.d("debug", " showCanvas = false${cuisineData.cuisineData}")
 
             //secondfragmentに画面遷移
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 
+        }
+        view.findViewById<ImageButton>(R.id.removeButton).setOnClickListener {
+
+            rouletteView.showCanvas(false)
+
+            Log.d("debug", " showCanvas = false${cuisineData.cuisineData}")
+
+            //cuisineDataの要素をチェック
+            //ある場合は末尾の要素を削除
+            //ない場合は削除できるピースがありませんと表示
+            if (cuisineData.cuisineData.size != 0) {
+                val removeCuisine = cuisineData.cuisineData.removeAt(cuisineData.cuisineData.size - 1)
+                Toast.makeText(this.requireContext(), "$removeCuisine を削除しました", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this.requireContext(), "削除できるピースがありません", Toast.LENGTH_SHORT).show()
+            }
+            rouletteView.showCanvas(true)
         }
 
     }

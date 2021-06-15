@@ -1,8 +1,9 @@
 package com.example.cookingroulette
 
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.Transformation
-import com.example.cookingroulette.RouletteView
+
 
 
 class RouletteAnimation internal constructor(rouletteView: RouletteView, pos: Int) : Animation() {
@@ -17,6 +18,7 @@ class RouletteAnimation internal constructor(rouletteView: RouletteView, pos: In
         // 矩形のY軸位置をセット
         rouletteView.setPositon(pp)
         rouletteView.requestLayout()
+        Log.d("debug", " showPp = ${pp}")
     }
 
     init {

@@ -46,37 +46,39 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val endPosition = 3000
-        /* val randomPosition = (3000..4000).random()
-            Log.d("debug", " randomPosition = ${randomPosition}")
+        view.findViewById<Button>(R.id.startButton).setOnClickListener {
+
+            /*val randomPosition = (3000..4000).random()
+            Log.d("debug", " randomPosition = $randomPosition")
             // 最終position
             val endPosition = randomPosition*/
 
+            val endPosition = 4000
 
 
-        val rouletteAnimation = RouletteAnimation(rouletteView, endPosition)
-        // アニメーションの起動期間を設定
-        rouletteAnimation.duration = 7000
 
-        //RouletteAnimationのリスナー
-        rouletteAnimation.setAnimationListener(object : Animation.AnimationListener {
-            //onAnimationStartでアニメーションが開始したことを通知し、
-            // そのタイミングでaddFlagsで画面操作を受け付けなくする
-            override fun onAnimationStart(p0: Animation?) {
-                activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-            }
-            //onAnimationEndでアニメーションが終了したことを通知し、
-            // そのタイミングでclearFlagsで画面操作を再度受け付ける
-            override fun onAnimationEnd(p0: Animation?) {
-                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-            }
-            //アニメーションの繰り返し時を通知する
-            override fun onAnimationRepeat(p0: Animation?) {
-                TODO("Not yet implemented")
-            }
-        })
+            val rouletteAnimation = RouletteAnimation(rouletteView, endPosition)
+            // アニメーションの起動期間を設定
+            rouletteAnimation.duration = 7000
 
-        view.findViewById<Button>(R.id.startButton).setOnClickListener {
+            //RouletteAnimationのリスナー
+            rouletteAnimation.setAnimationListener(object : Animation.AnimationListener {
+                //onAnimationStartでアニメーションが開始したことを通知し、
+                // そのタイミングでaddFlagsで画面操作を受け付けなくする
+                override fun onAnimationStart(p0: Animation?) {
+                    activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                }
+                //onAnimationEndでアニメーションが終了したことを通知し、
+                // そのタイミングでclearFlagsで画面操作を再度受け付ける
+                override fun onAnimationEnd(p0: Animation?) {
+                    activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                }
+                //アニメーションの繰り返し時を通知する
+                override fun onAnimationRepeat(p0: Animation?) {
+                    TODO("Not yet implemented")
+                }
+            })
+
             rouletteView.startAnimation(rouletteAnimation)
         }
 

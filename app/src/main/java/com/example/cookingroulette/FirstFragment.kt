@@ -36,7 +36,7 @@ class FirstFragment : Fragment() {
         val numPicker = v.findViewById<NumberPicker>(R.id.numPicker)
         //配列のインデックス最小、最大を指定
         numPicker.minValue = 2
-        numPicker.maxValue = 20
+        numPicker.maxValue = 10
         numPicker.value = 2
         return v
 
@@ -53,6 +53,7 @@ class FirstFragment : Fragment() {
             // 最終position
             val endPosition = randomPosition*/
 
+            //テストのため一時的に固定
             val endPosition = 4000
 
 
@@ -72,6 +73,8 @@ class FirstFragment : Fragment() {
                 // そのタイミングでclearFlagsで画面操作を再度受け付ける
                 override fun onAnimationEnd(p0: Animation?) {
                     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                    //アニメーション終了時に当選した料理（ピース）を表示する
+
                 }
                 //アニメーションの繰り返し時を通知する
                 override fun onAnimationRepeat(p0: Animation?) {

@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                                             *arrayOf("title" to editText.text.toString()))
                                 }
                                 toast("データを追加しました")
-                                finish()
+                                //finish()
                         })
                         .setNegativeButton("キャンセル", null)
                         .show()
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_delete -> {
                 toast("データを削除しました")
-                finish()
+                //finish()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

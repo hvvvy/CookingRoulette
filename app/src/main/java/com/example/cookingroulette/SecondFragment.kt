@@ -56,18 +56,6 @@ class SecondFragment : Fragment() {
            // rouletteView.showCanvas(true)
             Log.d("debug", " showCanvas = true${cuisineData.cuisineData}${cuisineData.cuisineData.size}")
 
-
-            /*if (showCanvas) {
-                rouletteView.showCanvas(false)
-                showCanvas = false
-                Log.d("debug"," showCanvas = false")
-
-            } else {
-                rouletteView.showCanvas(true)
-                showCanvas = true
-                Log.d("debug"," showCanvas = true")
-            }*/
-
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 

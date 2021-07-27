@@ -38,14 +38,6 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
 
             //text用
             textPaint.textSize = 50f
-           /* //赤色
-            rPaint.color = Color.argb(255, 255, 0, 0)
-            //黄色
-            yPaint.color = Color.argb(255, 255, 255, 0)
-            //水色
-            lbPaint.color = Color.argb(255, 0, 255, 255)
-            //緑色
-            gPaint.color = Color.argb(255, 0, 255, 0)*/
 
             //赤色
             rPaint.color = Color.argb(255, 255, 63, 63)
@@ -56,20 +48,25 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
             //緑色
             gPaint.color = Color.argb(255, 210, 237, 159)
 
-            val rectf = RectF((canvas.width / 4).toFloat(),
+            val rectfPiece = RectF((canvas.width / 4).toFloat(),
                             (canvas.width / 4).toFloat(),
                     ((canvas.width / 4)) * 3.toFloat(),
                     ((canvas.width / 4)) * 3.toFloat())
 
+            val rectfPin = RectF((canvas.width / 10) * 4.toFloat(),
+                    (canvas.width / 6).toFloat(),
+                    ((canvas.width / 10)) * 6.toFloat(),
+                    ((canvas.width / 6)) * 2.toFloat())
 
 
+            //canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
 
             // (left, top, right, bottom) 左上(400, 100)を起点に幅200の矩形
             // canvas.drawRect(400f, (100 + position).toFloat(), 600f, (300 + position).toFloat(), paint)
-            //canvas.save()
+            canvas.save()
             //translate()はcanvasごと移動させる rotate()はcanvas自体はそのまま動かさず回転軸だけを移動させる
             //回転軸を中心にする
-            canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+            //canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
             //
             // canvas.scale(1f,0.70f)
 
@@ -82,6 +79,7 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
             val size = cuisine.size
             when (size) {
                 0 -> {
+                    canvas.restore()
                     //「＋ボタンを押して料理を追加してください」テキスト
                     textPaint.textSize = 85f
                     canvas.drawText("＋ボタンを押して", (canvas.width / 13) * 2.toFloat(),
@@ -90,621 +88,387 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                             (canvas.width / 6) * 2.toFloat(), textPaint)
                 }
                 1 -> {
+
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 360f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 360f, true, rPaint)
 
                     //テスト
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 2).toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
                 }
                 2 -> {
-                        //1個目
-                        canvas.drawArc((canvas.width / 4).toFloat(),
-                                (canvas.width / 4).toFloat(),
-                                ((canvas.width / 4)) * 3.toFloat(),
-                                ((canvas.width / 4)) * 3.toFloat(),
-                                270f, 180f,
-                                true, rPaint)
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
+                    //1個目
+                    canvas.drawArc(rectfPiece, 270f, 180f, true, rPaint)
 
                     //テスト
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            90f, 180f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 90f, 180f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
                 }
                 3 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 120f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 120f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            30f, 120f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 30f, 120f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 4.toFloat(),
                             (canvas.width / 11) * 7.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            150f, 120f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 150f, 120f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
                 }
                 4 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        270f, 90f,
-                        true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 90f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                         (canvas.width / 11) * 5.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        360f, 90f,
-                        true, yPaint)
+                    canvas.drawArc(rectfPiece, 360f, 90f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 6.toFloat(),
                         (canvas.width / 11) * 6.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        90f, 90f,
-                        true, lbPaint)
+                    canvas.drawArc(rectfPiece, 90f, 90f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 3.toFloat(),
                         (canvas.width / 11) * 6.toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        180f, 90f,
-                        true, gPaint)
+                    canvas.drawArc(rectfPiece, 180f, 90f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 3.toFloat(),
                         (canvas.width / 11) * 5.toFloat(), textPaint)
                 }
                 5 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     textPaint.textSize = 45f
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 72f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 72f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 2).toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            342f, 72f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 342f, 72f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 6.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            54f, 72f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 54f, 72f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 4.toFloat(),
                             (canvas.width / 11) * 8.toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            126f, 72f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 126f, 72f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 11) * 6.toFloat(), textPaint)
 
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            198f, 72f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 198f, 72f, true, lbPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
                 }
                 6 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     textPaint.textSize = 30f
 
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 60f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 60f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            330f, 60f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 330f, 60f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 9.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            30f, 60f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 30f, 60f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            90f, 60f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 90f, 60f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            150f, 60f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 150f, 60f, true, rPaint)
 
                     canvas.drawText(cuisine[4].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //6個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            210f, 60f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 210f, 60f, true, yPaint)
 
                     canvas.drawText(cuisine[5].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
                 }
                 7 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     textPaint.textSize = 30f
 
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 51f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 51f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            321f, 51f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 321f, 51f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 9.toFloat(),
                             (canvas.width / 11) * 5.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            12f, 51f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 12f, 51f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 9.toFloat(),
                             (canvas.width / 11) * 7.toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            63f, 51f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 63f, 51f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 5.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            114f, 51f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 114f, 51f, true, rPaint)
 
                     canvas.drawText(cuisine[4].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 11) * 8.toFloat(), textPaint)
 
                     //6個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            165f, 51f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 165f, 51f, true, yPaint)
 
                     canvas.drawText(cuisine[5].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 11) * 5.toFloat(), textPaint)
 
                     //7個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            216f, 54f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 216f, 54f, true, lbPaint)
 
                     canvas.drawText(cuisine[6].toString(), (canvas.width / 11) * 2.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
                 }
                 8 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     textPaint.textSize = 30f
 
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 45f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 45f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            315f, 45f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 315f, 45f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 8.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            360f, 45f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 360f, 45f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 8.toFloat(),
                             (canvas.width / 11) * 7.toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            45f, 45f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 45f, 45f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            90f, 45f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 90f, 45f, true, rPaint)
 
                     canvas.drawText(cuisine[4].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //6個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            135f, 45f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 135f, 45f, true, yPaint)
 
                     canvas.drawText(cuisine[5].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 11) * 7.toFloat(), textPaint)
 
                     //7個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            180f, 45f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 180f, 45f, true, lbPaint)
 
                     canvas.drawText(cuisine[6].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
                     //8個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            225f, 45f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 225f, 45f, true, gPaint)
 
                     canvas.drawText(cuisine[7].toString(), (canvas.width / 11) * 3.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
                 }
                 9 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     textPaint.textSize = 30f
 
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 40f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 40f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            310f, 40f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 310f, 40f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 8.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            350f, 40f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 350f, 40f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 9.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            30f, 40f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 30f, 40f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 7.toFloat(),
                             (canvas.width / 11) * 8.toFloat(), textPaint)
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            70f, 40f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 70f, 40f, true, rPaint)
 
                     canvas.drawText(cuisine[4].toString(), (canvas.width / 11) * 5.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //6個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            110f, 40f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 110f, 40f, true, yPaint)
 
                     canvas.drawText(cuisine[5].toString(), (canvas.width / 11) * 2.toFloat(),
                             (canvas.width / 11) * 8.toFloat(), textPaint)
 
                     //7個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            150f, 40f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 150f, 40f, true, lbPaint)
 
                     canvas.drawText(cuisine[6].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 11) * 6.toFloat(), textPaint)
                     //8個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            190f, 40f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 190f, 40f, true, gPaint)
 
                     canvas.drawText(cuisine[7].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //9個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            230f, 40f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 230f, 40f, true, yPaint)
 
                     canvas.drawText(cuisine[8].toString(), (canvas.width / 11) * 2.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
                 }
                 10 -> {
+                    canvas.drawArc(rectfPin, 255f, 30f, true, yPaint)
+                    //回転軸を中心にする
+                    canvas.rotate(position.toFloat(), (canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
+
                     textPaint.textSize = 30f
 
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        270f, 36f,
-                        true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 36f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                         (canvas.width / 11) * 2.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        306f, 36f,
-                        true, yPaint)
+                    canvas.drawArc(rectfPiece, 306f, 36f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 8.toFloat(),
                         (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        342f, 36f,
-                        true, lbPaint)
+                    canvas.drawArc(rectfPiece, 342f, 36f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 9.toFloat(),
                         (canvas.width / 2).toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        18f, 36f,
-                        true, gPaint)
+                    canvas.drawArc(rectfPiece, 18f, 36f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 8.toFloat(),
                         (canvas.width / 11) * 7.toFloat(), textPaint)
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        54f, 36f,
-                        true, rPaint)
+                    canvas.drawArc(rectfPiece, 54f, 36f, true, rPaint)
 
                     canvas.drawText(cuisine[4].toString(), (canvas.width / 11) * 6.toFloat(),
                         (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //6個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        90f, 36f,
-                        true, yPaint)
+                    canvas.drawArc(rectfPiece, 90f, 36f, true, yPaint)
 
                     canvas.drawText(cuisine[5].toString(), (canvas.width / 11) * 4.toFloat(),
                         (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //7個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        126f, 36f,
-                        true, lbPaint)
+                    canvas.drawArc(rectfPiece, 126f, 36f, true, lbPaint)
 
                     canvas.drawText(cuisine[6].toString(), (canvas.width / 11) * 2.toFloat(),
                         (canvas.width / 11) * 7.toFloat(), textPaint)
                     //8個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        162f, 36f,
-                        true, gPaint)
+                    canvas.drawArc(rectfPiece, 162f, 36f, true, gPaint)
 
                     canvas.drawText(cuisine[7].toString(), (canvas.width / 11) * 1.toFloat(),
                         (canvas.width / 2).toFloat(), textPaint)
 
                     //9個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        198f, 36f,
-                        true, rPaint)
+                    canvas.drawArc(rectfPiece, 198f, 36f, true, rPaint)
 
                     canvas.drawText(cuisine[8].toString(), (canvas.width / 11) * 2.toFloat(),
                         (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //10個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                        (canvas.width / 4).toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        ((canvas.width / 4)) * 3.toFloat(),
-                        234f, 36f,
-                        true, yPaint)
+                    canvas.drawArc(rectfPiece, 234f, 36f, true, yPaint)
 
                     // canvas.rotate(288f,(canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
                     canvas.drawText(cuisine[9].toString(), (canvas.width / 11) * 4.toFloat(),
@@ -716,109 +480,59 @@ class RouletteView(context: Context?, attrs: AttributeSet) : View(context, attrs
                     textPaint.textSize = 30f
 
                     //1個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            270f, 36f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 270f, 36f, true, rPaint)
 
                     canvas.drawText(cuisine[0].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 2.toFloat(), textPaint)
 
                     //2個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            306f, 36f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 306f, 36f, true, yPaint)
 
                     canvas.drawText(cuisine[1].toString(), (canvas.width / 11) * 8.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //3個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            342f, 36f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 342f, 36f, true, lbPaint)
 
                     canvas.drawText(cuisine[2].toString(), (canvas.width / 11) * 9.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //4個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            18f, 36f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 18f, 36f, true, gPaint)
 
                     canvas.drawText(cuisine[3].toString(), (canvas.width / 11) * 8.toFloat(),
                             (canvas.width / 11) * 7.toFloat(), textPaint)
                     //5個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            54f, 36f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 54f, 36f, true, rPaint)
 
                     canvas.drawText(cuisine[4].toString(), (canvas.width / 11) * 6.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //6個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            90f, 36f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 90f, 36f, true, yPaint)
 
                     canvas.drawText(cuisine[5].toString(), (canvas.width / 11) * 4.toFloat(),
                             (canvas.width / 11) * 9.toFloat(), textPaint)
 
                     //7個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            126f, 36f,
-                            true, lbPaint)
+                    canvas.drawArc(rectfPiece, 126f, 36f, true, lbPaint)
 
                     canvas.drawText(cuisine[6].toString(), (canvas.width / 11) * 2.toFloat(),
                             (canvas.width / 11) * 7.toFloat(), textPaint)
                     //8個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            162f, 36f,
-                            true, gPaint)
+                    canvas.drawArc(rectfPiece, 162f, 36f, true, gPaint)
 
                     canvas.drawText(cuisine[7].toString(), (canvas.width / 11) * 1.toFloat(),
                             (canvas.width / 2).toFloat(), textPaint)
 
                     //9個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            198f, 36f,
-                            true, rPaint)
+                    canvas.drawArc(rectfPiece, 198f, 36f, true, rPaint)
 
                     canvas.drawText(cuisine[8].toString(), (canvas.width / 11) * 2.toFloat(),
                             (canvas.width / 11) * 4.toFloat(), textPaint)
 
                     //10個目
-                    canvas.drawArc((canvas.width / 4).toFloat(),
-                            (canvas.width / 4).toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            ((canvas.width / 4)) * 3.toFloat(),
-                            234f, 36f,
-                            true, yPaint)
+                    canvas.drawArc(rectfPiece, 234f, 36f, true, yPaint)
 
                     // canvas.rotate(288f,(canvas.width / 2).toFloat(), (canvas.width / 2).toFloat())
                     canvas.drawText(cuisine[9].toString(), (canvas.width / 11) * 4.toFloat(),

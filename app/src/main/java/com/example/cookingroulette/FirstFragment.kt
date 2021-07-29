@@ -70,19 +70,19 @@ class FirstFragment : Fragment() {
 
             //一周するのに360（360°）
             //下限値3600、上限値3960にすることで10周～11周の間に停止する
-            /*val randomPosition = (3600..3960).random()
+            val randomPosition = (3600..3960).random()
             Log.d("debug", " randomPosition = $randomPosition")
             // 最終position
-            val endPosition = randomPosition*/
+            val endPosition = randomPosition
 
             //テストのため一時的に固定 //4000
-            val endPosition = 3700
+            //val endPosition = 3700
 
 
 
             val rouletteAnimation = RouletteAnimation(rouletteView, endPosition)
-            // アニメーションの起動期間を設定　//7000ミリ秒
-            rouletteAnimation.duration = 500
+            // アニメーションの起動期間を設定　//5000ミリ秒
+            rouletteAnimation.duration = 5000
 
             //RouletteAnimationのリスナー
             rouletteAnimation.setAnimationListener(object : Animation.AnimationListener {
